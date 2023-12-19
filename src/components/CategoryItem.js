@@ -2,9 +2,9 @@ import { Pressable, StyleSheet, Text } from 'react-native'
 import {colors} from '../global/color'
 import CardShadow from '../Wrappers/CardShadow'
 
-const CategoryItem = ({category, setCategorySelect}) => {
+const CategoryItem = ({category, navigation, route}) => {
   return (
-    <Pressable onPress={() => setCategorySelect (category)}>
+    <Pressable onPress={() => navigation.navigate ("Category",{category})}>
     <CardShadow style ={styles.container}>
       <Text style ={styles.text}>{category}</Text>
     </CardShadow>

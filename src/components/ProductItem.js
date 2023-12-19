@@ -1,16 +1,19 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, Pressable, Image, useWindowDimensions } from 'react-native'
 import { colors } from '../global/color'
 
-const ProductItem = ({item}) => {
+const ProductItem = ({item, navigation, route}) => {
+
+  const {width} = useWindowDimensions()
+
   return (
-    <View style={styles.container}>
+    <Pressable style={styles.container} onPress={()=> navigation.navigate ("Product",{id:item.id})}>
+        <Text style={width > 350 ? styles.text : styles.textMin}>{item.title}</Text>
         <Image
             style={styles.image}
             resizeMode='cover'
             source={{uri:item.thumbnail}}
         />
-        <Text style={styles.text}>{item.title}</Text>
-    </View>
+    </Pressable>
   )
 }
 
@@ -27,15 +30,20 @@ const styles = StyleSheet.create({
         padding: 15,
         flexDirection:"row",
         alignItems:"center",
-        justifyContent:"start",
+        justifyContent:"space-between",
         gap: 20,
     },
     image:{
-        width:50,
-        height:50
+        minWidth: 90,
+        minHeight: 90,
+        width:"30%",
     },
     text:{
       fontFamily:"Josefin",
-      fontSize: 20
+      fontSize: 20,
+  },
+  textMin:{
+    fontFamily:"Josefin",
+    fontSize: 15,
   }
 })

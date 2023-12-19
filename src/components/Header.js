@@ -1,15 +1,28 @@
-import { StyleSheet, Text, View, Pressable } from 'react-native'
+import { StyleSheet, Text, View, Button } from 'react-native'
 import { colors } from '../global/color'
+import { useNavigation } from '@react-navigation/native'
 import { FontAwesome } from '@expo/vector-icons'
 
-const Header = ({title = "Producto"}) => {
+const Header = ({title}) => {
+
+  function MyBackButton() {
+    const navigation = useNavigation();
+  
+    return (
+      <FontAwesome
+        name="arrow-left"
+        size={24}
+        onPress={() => {
+          navigation.goBack();
+        }}
+      />
+    );
+  }
 
   return (
     <View style={styles.container}>
-      <Pressable>
-          <FontAwesome name="home" size={24} color="black" />
-      </Pressable>
-      <Text style={styles.text}>{title}</Text>
+        <MyBackButton/>
+        <Text style={styles.text}>{title}</Text>
     </View>
   )
 }
@@ -22,12 +35,13 @@ const styles = StyleSheet.create({
         backgroundColor:colors.blue1,
         width:"100%",
         height: 80,
-        justifyContent:"center",
+        justifyContent:"flex-start",
         alignItems:"center",
-        gap: 20
+        gap: 30,
+        paddingHorizontal: 20,
     },
     text:{
-        fontSize: 30,
+        fontSize: 35,
         fontFamily:"Lobster"
     }
 })
