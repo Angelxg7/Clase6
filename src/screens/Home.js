@@ -1,9 +1,10 @@
-import { StyleSheet} from 'react-native'
+import { StyleSheet } from 'react-native'
 import Categories from '../components/Categories'
 
 const Home = ({navigation, route}) => {
+
   return (
-    <>
+    <>  
         <Categories navigation={navigation} route={route}/>
     </>
   )
@@ -11,4 +12,6 @@ const Home = ({navigation, route}) => {
 
 export default Home
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  
+})

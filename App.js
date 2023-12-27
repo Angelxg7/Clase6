@@ -1,8 +1,10 @@
 import { StyleSheet, StatusBar} from 'react-native'
 import { colors } from './src/global/color'
 import {useFonts} from 'expo-font'
-import Navigator from './src/navigation/Navigator'
 import { fonts } from './src/global/fonts'
+import TabNavigator from './src/navigation/TabNavigator'
+import { store } from './src/app/store'
+import { Provider } from 'react-redux'
 
 const App = () => {
   
@@ -16,7 +18,9 @@ const App = () => {
           backgroundColor={colors.lgrey1}
           barStyle={"dark-content"}
         />
-        <Navigator/>
+        <Provider store={store}>
+            <TabNavigator/>
+        </Provider>
       </>
   )
 }
