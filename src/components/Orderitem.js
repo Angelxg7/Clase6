@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
-import { colors } from '../global/color'
 
 const Orderitem = ({order}) => {
     const total = order.items.reduce((acc,product)=> acc + (product.price * product.quantity),0)

@@ -1,35 +1,24 @@
 import { StyleSheet, FlatList, View, Text, Pressable } from 'react-native'
-import allCart from "../data/cart.json"
 import CartItem from '../components/CartItem'
-import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { usePostOrdersMutation } from '../app/services/shopServices'
 
 const Cart = () => {
-
-  const [cart, setCart] = useState([])
-  const [total, setTotal] = useState (0)
-  
-  useEffect(()=>{
-      setCart(allCart)
-  },[])
-
-  useEffect (()=>{
-      const total = cart.reduce((acc,product)=> acc + (product.price * product.quantity),0)
-      setTotal(total)
-      
-  },[cart])
+  const cart = useSelector(state => state.cart.value)
+  const [triggerPostOrder] = usePostOrdersMutation()
 
   return (
     <View style={styles.container}>
         <FlatList
-            data={allCart}
+            data={cart.items}
             keyExtractor={item => item.id}
             renderItem={({item})=> <CartItem item={item}/>}
         />
         <View style={styles.confirmContainer}>
-            <Pressable>
+            <Pressable onPress={()=> triggerPostOrder(cart)}>
                 <Text style={styles.text}>Confirmar</Text>
             </Pressable>
-            <Text style={styles.text}>Total: $ {total}</Text>
+            <Text style={styles.text}>Total: $ {cart.total}</Text>
         </View>
     </View>
   )
@@ -43,12 +32,13 @@ const styles = StyleSheet.create({
     marginBottom: 130,
   },
   confirmContainer:{
-    backgroundColor: "grey",
+    backgroundColor: "#444",
     padding: 25,
     flexDirection:"row",
     justifyContent:"space-between",
   },
   text:{
+    fontSize: 20,
     color:"#fff",
   }
 })

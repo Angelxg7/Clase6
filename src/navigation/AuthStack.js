@@ -1,25 +1,27 @@
 import Header from '../components/Header'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Orders from '../screens/Orders'
+import Signup from '../screens/Signup'
+import Login from '../screens/Login'
 
 const Stack = createNativeStackNavigator()
 
-const OrdersStack = () => {
+const AuthStack = () => {
   return (
     <Stack.Navigator
-                    initialRouteName='Orders'
+                    initialRouteName="Signup"
                     screenOptions={
                         ({route})=>{
                             return {
                                 header : () => 
-                                <Header title="Ordenes"/>
+                                <Header title="Bienvenido"/>
                             }
                         }
                     }
               >
-                    <Stack.Screen name="Orders" component={Orders} />                   
+                    <Stack.Screen name="Signup" component={Signup} />
+                    <Stack.Screen name="Login" component={Login} />                       
             </Stack.Navigator>
   )
 }
 
-export default OrdersStack
+export default AuthStack

@@ -1,17 +1,16 @@
 import { StyleSheet } from 'react-native'
-import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import ShopStack from './ShopStack'
 import CartStack from './CartStack'
 import { colors } from '../global/color'
 import OrdersStack from './OrdersStack'
 import TabIcon from '../components/TabIcon'
+import ProfileStack from './ProfileStack'
 
 const Tab = createBottomTabNavigator()
 
 const TabNavigator = () => {
   return (
-    <NavigationContainer>
         <Tab.Navigator
             screenOptions={{
               headerShown: false,
@@ -40,8 +39,14 @@ const TabNavigator = () => {
                   tabBarIcon:({focused}) => <TabIcon icon="list" label="Ordenes" focused={focused}/>                    
                 }}
                 />
+            <Tab.Screen
+                name="ProfileStack"
+                component={ProfileStack}
+                options={{
+                  tabBarIcon:({focused}) => <TabIcon icon="user" label="Perfil" focused={focused}/>                    
+                }}
+                />
       </Tab.Navigator>  
-    </NavigationContainer>
   )
 }
 
