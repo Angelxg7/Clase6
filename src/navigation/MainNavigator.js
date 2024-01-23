@@ -12,11 +12,11 @@ const MainNavigator = () => {
   const idToken = useSelector(state => state.auth.value.idToken)
 
   useEffect(()=>{
-    (async ()=>{
+    ( async ()=>{
       try {
         const session = await fetchSession()
         console.log(session)
-        if(session?.rows.lenght){
+        if (session?.rows.length){
           const user = session.rows._array[0]
           dispatch(setUser(user))
         }
