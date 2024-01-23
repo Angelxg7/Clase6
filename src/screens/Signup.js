@@ -20,7 +20,12 @@ const Signup = ({navigation}) => {
     const [confirmPasswordError, setConfirmPasswordError] = useState("")
 
     useEffect(()=>{
-        if(isSuccess) dispatch(setUser(data))
+        if(isSuccess) {
+            dispatch(setUser(data))
+            insertSession(data)
+                .then(result => console.log(result))
+                .catch(error => console.log(error))
+        }
         if(isError) console.log(error)
     },[data,isError,isSuccess])
 

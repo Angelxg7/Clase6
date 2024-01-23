@@ -7,6 +7,7 @@ import { useLoginMutation } from "../app/services/auth"
 import { useDispatch } from "react-redux"
 import { setUser } from "../features/auth/authSlice"
 import { loginSchema } from "../validations/loginSchema"
+import { insertSession } from "../database"
 
 const Login = ({navigation})=> {
 
@@ -18,7 +19,12 @@ const Login = ({navigation})=> {
     const [passwordError, setPasswordError] = useState("")
 
     useEffect(()=>{
-        if(isSuccess) dispatch(setUser(data))
+        if(isSuccess) {
+            dispatch(setUser(data))
+            insertSession(data)
+                .then(result => console.log(result))
+                .catch(error => console.log(error))
+        }
         if(isError) console.log(error)
     },[data,isError,isSuccess])
 
@@ -31,7 +37,7 @@ const Login = ({navigation})=> {
         } catch (error) {
             switch(error.path){
                 case "email":
-                    setEmailError(error.message)
+                    setMailError(error.message)
                     break
                 case "password":
                     setPasswordError(error.message)
