@@ -1,16 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native'
-import { FontAwesome } from '@expo/vector-icons'
+import { AntDesign } from '@expo/vector-icons'
+import { colors } from '../global/color'
 
 const Orderitem = ({order}) => {
-    const total = order.items.reduce((acc,product)=> acc + (product.price * product.quantity),0)
 
   return (
     <View style={styles.container}>
         <View style={styles.textContainer}>
-            <Text style={styles.text1}>{new Date(order.createdAt).toLocaleString()}</Text>
-            <Text style={styles.text2}>Total: $ {total}</Text>
+            <Text style={styles.text1}>{order.updateAt}</Text>
+            <Text style={styles.text2}>Total: $ {order.total}</Text>
        </View>
-       <FontAwesome name="search" size={24} color="black" />
+       <AntDesign name="caretdown" size={24} color="black" onPress={()=> console.log(order)} />
     </View>
   )
 }
@@ -19,7 +19,7 @@ export default Orderitem
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor: "#aee",
+        backgroundColor: colors.red2,
         margin: 10,
         padding: 10,
         height: 100,

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, Pressable, Image, useWindowDimensions } from 'react-native'
+import { StyleSheet, Text, Pressable, Image, useWindowDimensions, ImageBackground } from 'react-native'
 import { colors } from '../global/color'
 import { useDispatch } from 'react-redux'
 import { setProductSelected } from '../features/shop/shopSlice'
@@ -7,8 +7,10 @@ const ProductItem = ({item, navigation, route}) => {
 
   const {width} = useWindowDimensions()
   const dispatch = useDispatch()
+  const image = {uri: 'https://i.postimg.cc/FKBpfQGd/fondo-expo1.jpg'}
 
   return (
+    <ImageBackground source={image}>
     <Pressable style={styles.container} onPress={()=> {
       dispatch(setProductSelected(item.id))
       navigation.navigate ("Product",{id:item.id})
@@ -20,6 +22,7 @@ const ProductItem = ({item, navigation, route}) => {
             source={{uri:item.thumbnail}}
         />
     </Pressable>
+    </ImageBackground>
   )
 }
 
@@ -28,7 +31,7 @@ export default ProductItem
 const styles = StyleSheet.create({
     container:{
         width:"80%",
-        backgroundColor:colors.blue2,
+        backgroundColor:colors.red1,
         borderWidth: 2,
         borderRadius: 5,
         margin: 10,

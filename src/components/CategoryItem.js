@@ -9,14 +9,14 @@ const CategoryItem = ({category, navigation, route}) => {
   const dispatch = useDispatch()
 
   return (
-    <Pressable onPress={() => {
-      dispatch(setProductsFilteredByCategory(category))
-      navigation.navigate ("Category",{category})
-      }}>
-        <CardShadow style ={styles.container}>
-          <Text style ={styles.text}>{category}</Text>
-        </CardShadow>
-    </Pressable>
+            <Pressable onPress={() => {
+              dispatch(setProductsFilteredByCategory(category))
+              navigation.navigate ("Category",{category})
+              }}>
+                <CardShadow style ={styles.container}>
+                  <Text style ={styles.text}>{category}</Text>
+                </CardShadow>
+            </Pressable>
   )
 }
 
@@ -28,12 +28,16 @@ const styles = StyleSheet.create({
         alignItems:"center",
         justifyContent:"center",
         marginHorizontal:"10%",
-        backgroundColor: colors.blue2,
+        backgroundColor: colors.red1,
         margin: 10,
         padding: 10,
+        paddingTop: 25,
+        paddingBottom: 25,
+        borderRadius: 10,
+        borderWidth: 2
     },
     text:{
         fontFamily:"Josefin",
-        fontSize: 20
+        fontSize: 22
     }
 })

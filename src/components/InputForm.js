@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         width:"90%",
         borderWidth:0,
         borderBottomWidth:3,
-        borderBottomColor:colors.blue3,
+        borderBottomColor:"#000",
         padding:2,
         fontFamily:"Josefin",
         fontSize:14,

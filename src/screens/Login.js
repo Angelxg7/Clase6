@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { View, Text, StyleSheet, Pressable } from "react-native"
+import { View, Text, StyleSheet, Pressable, ImageBackground } from "react-native"
 import { colors } from "../global/color"
 import InputForm from "../components/InputForm"
 import SubmitButton from "../components/SubmitButton"
@@ -12,13 +12,14 @@ import { insertSession } from "../database"
 const Login = ({navigation})=> {
 
     const dispatch = useDispatch()
-    const [triggerLogin,{data,isError,isSuccess,error,isLoading}] = useLoginMutation()
+    const [triggerLogin,{data,isError,isSuccess,error}] = useLoginMutation()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [emailError, setEmailError] = useState("")
     const [passwordError, setPasswordError] = useState("")
+    const image = {uri: 'https://i.postimg.cc/FKBpfQGd/fondo-expo1.jpg'}
 
-    useEffect(()=>{
+   useEffect(()=>{
         if(isSuccess) {
             dispatch(setUser(data))
             insertSession(data)
@@ -49,9 +50,9 @@ const Login = ({navigation})=> {
     }
 
 return (
-    <View style={styles.main}>
+    <ImageBackground style={styles.main} source={image} >
         <View style={styles.container}>
-            <Text style={styles.title}>Login to start</Text>
+            <Text style={styles.title}>Iniciar Sesión</Text>
             <InputForm
                 label="Email"
                 value={email}
@@ -68,14 +69,14 @@ return (
             />
             <SubmitButton
                 onPress={onSubmit}
-                title="Send"
+                title="Ingresar"
             />
             <Text style={styles.sub}>¿No posee una cuenta?</Text>
             <Pressable onPress={()=> navigation.navigate("Signup")}>
-                <Text style={styles.subLink}>Sign Up</Text>
+                <Text style={styles.subLink}>Registrarse</Text>
             </Pressable>
         </View>
-    </View>
+    </ImageBackground>
 )
 }
 
@@ -89,7 +90,7 @@ const styles = StyleSheet.create({
     },
     container:{
         width:"90%",
-        backgroundColor:colors.blue1,
+        backgroundColor:colors.red1,
         gap: 15,
         borderRadius: 10,
         justifyContent:"center",
@@ -97,8 +98,8 @@ const styles = StyleSheet.create({
         paddingVertical: 20
     },
     title:{
-        fontSize: 22,
-        fontFamily:"Lobster"
+        fontSize: 26,
+        fontFamily:"BlackOpsOne"
     },
     sub:{
         fontSize: 24,
@@ -107,6 +108,6 @@ const styles = StyleSheet.create({
     subLink:{
         fontSize: 24,
         fontFamily:"Josefin",
-        color:"blue"
+        color:"white"
     }
 })

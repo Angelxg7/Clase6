@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { View, Text, StyleSheet, Pressable } from "react-native"
+import { View, Text, StyleSheet, Pressable, ImageBackground } from "react-native"
 import InputForm from '../components/InputForm'
 import SubmitButton from '../components/SubmitButton'
 import { colors } from "../global/color"
@@ -7,6 +7,7 @@ import { useSignupMutation } from "../app/services/auth"
 import { useDispatch } from "react-redux"
 import { setUser } from "../features/auth/authSlice"
 import { signupSchema } from "../validations/signupSchema"
+import { insertSession } from "../database"
 
 const Signup = ({navigation}) => {
 
@@ -18,6 +19,7 @@ const Signup = ({navigation}) => {
     const [emailError, setEmailError] = useState("")
     const [passwordError, setPasswordError] = useState("")
     const [confirmPasswordError, setConfirmPasswordError] = useState("")
+    const image = {uri: 'https://i.postimg.cc/FKBpfQGd/fondo-expo1.jpg'}
 
     useEffect(()=>{
         if(isSuccess) {
@@ -54,9 +56,9 @@ const Signup = ({navigation}) => {
     }
 
 return (
-    <View style={styles.main}>
+    <ImageBackground style={styles.main} source={image} >
         <View style={styles.container}>
-            <Text style={styles.title}>Sign Up</Text>
+            <Text style={styles.title}>Registrese</Text>
             <InputForm
                 label="Email"
                 value={email}
@@ -72,20 +74,20 @@ return (
                 error={passwordError}
             />
             <InputForm
-                label="Confirm Password"
+                label="Confirmar Password"
                 value={confirmPassword}
                 onChangeText={(t) => setConfirmPassword(t)}
                 isSecure = {true}
                 error={confirmPasswordError}
             />
-            <SubmitButton title="Send" onPress={onSubmit}
+            <SubmitButton title="Ingresar" onPress={onSubmit}
             />
             <Text style={styles.sub}>¿Ya tiene una cuenta?</Text>
             <Pressable onPress={()=> navigation.navigate("Login")}>
-                <Text style={styles.subLink}>Login</Text>
+                <Text style={styles.subLink}>Acceder</Text>
             </Pressable>
         </View>
-    </View>
+    </ImageBackground>
 )
 }
 
@@ -102,14 +104,14 @@ const styles = StyleSheet.create({
         flexDirection:"column",
         justifyContent:"center",
         alignItems:"center",
-        backgroundColor:colors.blue1,
+        backgroundColor:colors.red1,
         gap: 15,
         paddingVertical: 20,
         borderRadius: 10
     },
     title:{
-        fontSize: 22,
-        fontFamily:"Lobster"
+        fontSize: 28,
+        fontFamily:"BlackOpsOne"
     },
     sub:{
         fontSize: 24,
@@ -119,6 +121,6 @@ const styles = StyleSheet.create({
     subLink:{
         fontSize: 24,
         fontFamily:"Josefin",
-        color:"blue"
+        color:"white"
     }
 })

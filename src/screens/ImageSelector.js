@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { StyleSheet, View, Image } from 'react-native'
+import { StyleSheet, Image, ImageBackground } from 'react-native'
 import AddButton from '../components/AddButton'
 import * as ImagePicker from 'expo-image-picker'
 import { usePostProfileImageMutation } from '../app/services/shopServices'
@@ -12,6 +12,7 @@ const ImageSelector = ({navigation}) => {
     const [triggerProfileImage,{isError,error}] = usePostProfileImageMutation()
     const localId = useSelector(state => state.auth.value.localId)
     const {data,isSuccess} = useGetProfileImageQuery(localId)
+    const imageBack = {uri: 'https://i.postimg.cc/FKBpfQGd/fondo-expo1.jpg'}
 
     useEffect(()=>{
         if(isSuccess && data) setImage(data.image)
@@ -40,7 +41,7 @@ const ImageSelector = ({navigation}) => {
     }
 
   return (
-    <View style={styles.container} >
+    <ImageBackground style={styles.container} source={imageBack} >
         <Image
             source={image ? {uri: image} :
         require("../../assets/user.png")}
@@ -49,7 +50,7 @@ const ImageSelector = ({navigation}) => {
         />
         <AddButton title={"Tome una foto"} onPress={pickImage}/>
         <AddButton title={"Confirmar foto"} onPress={confirmImage}/>
-    </View>
+    </ImageBackground>
   )
 }
 
@@ -59,9 +60,9 @@ const styles = StyleSheet.create({
     container:{
         flex: 1,
         alignItems:"center",
-        marginTop: 20
     },
     image:{
+        marginTop: 40,
         width: 200,
         height: 200
     }

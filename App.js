@@ -34,9 +34,13 @@ export default App
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: colors.lgrey1,
     alignItems: 'center',
     justifyContent: 'start',
+    flex: 1
   },
+  image: {
+    resizeMode:"stretch",
+    flex: 1,
+  }
 })

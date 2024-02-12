@@ -43,7 +43,7 @@ export default Search
 
 const styles = StyleSheet.create({
       container:{
-        backgroundColor:colors.blue1,
+        backgroundColor:colors.red2,
         width:"100%",
       },
       inputContainer:{

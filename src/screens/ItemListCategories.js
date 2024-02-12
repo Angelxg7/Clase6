@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet} from 'react-native'
+import { FlatList, StyleSheet, View} from 'react-native'
 import Search from '../components/Search'
 import ProductItem from '../components/ProductItem'
 import { useEffect, useState } from 'react'
@@ -25,13 +25,13 @@ useEffect(()=>{
 
   return (
     <>
-      <Search setKeyword={setKeyword}/>
-      <FlatList
-          style={styles.container}
-          data={products}
-          keyExtractor={item => item.id}
-          renderItem={({item})=> <ProductItem item={item} navigation={navigation} route={route}/>}
-      />
+          <Search setKeyword={setKeyword}/>
+          <FlatList
+              style={styles.container}
+              data={products}
+              keyExtractor={item => item.id}
+              renderItem={({item})=> <ProductItem item={item} navigation={navigation} route={route}/>}
+          />
     </>
   )
 }
@@ -40,7 +40,7 @@ export default ItemListCategories
 
 const styles = StyleSheet.create({
     container:{
-      width:"100%"
+      width:"100%",
     },
     return:{
       flexDirection: 'row',
@@ -52,5 +52,8 @@ const styles = StyleSheet.create({
     },
     text:{
       fontSize: 20,
+    },
+    box:{
+      height: 120,
     }
 })

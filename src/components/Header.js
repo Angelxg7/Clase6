@@ -21,13 +21,11 @@ const Header = ({title}) => {
   function MyBackButton() {
     const navigation = useNavigation();
   
-    return (
+  if (title !== "Categorías") return (
       <FontAwesome
         name="arrow-left"
         size={24}
-        onPress={() => {
-          navigation.goBack();
-        }}
+        onPress={() => {navigation.goBack();}}        
       />
     );
   }
@@ -48,7 +46,7 @@ export default Header
 const styles = StyleSheet.create({
     container:{
         flexDirection:"row",
-        backgroundColor:colors.blue1,
+        backgroundColor:colors.red1,
         width:"100%",
         height: 80,
         justifyContent:"space-between",
@@ -58,6 +56,7 @@ const styles = StyleSheet.create({
     },
     text:{
         fontSize: 35,
-        fontFamily:"Lobster"
+        fontFamily:"BlackOpsOne",
+        color: "#fff",
     }
 })

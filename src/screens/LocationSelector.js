@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, ImageBackground } from 'react-native'
 import AddButton from '../components/AddButton'
 import * as Location from 'expo-location'
 import MapPreview from '../components/MapPreview'
@@ -14,6 +14,7 @@ const LocationSelector = ({navigation}) => {
     const [address, setAddress] = useState("")
     const [errorMsg, setErrorMsg] = useState(null)
     const [triggerPostUserLocation,{data,isSuccess,isError,error}] = usePostUserLocationMutation()
+    const image = {uri: 'https://i.postimg.cc/FKBpfQGd/fondo-expo1.jpg'}
 
     useEffect(() => {
       (async () => {     
@@ -63,11 +64,11 @@ const LocationSelector = ({navigation}) => {
         }
 
   return (
-    <View style={styles.container} >
+    <ImageBackground style={styles.container} source={image} >
       <Text style={styles.text}>{address} </Text>
       <MapPreview latitude={location.latitude} longitude={location.longitude} />
       <AddButton title={"Confirmar ubicación"} onPress={onConfirmAddress} />
-    </View>
+    </ImageBackground>
   )
 }
 
@@ -77,9 +78,11 @@ const styles = StyleSheet.create({
     container:{
         alignItems: "center",
         paddingTop: 30,
-        gap: 20
+        gap: 20,
+        flex: 1
     },
     text:{
-        fontSize: 20
+        fontSize: 20,
+        color: "#fff"
     }
 })
