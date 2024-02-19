@@ -32,12 +32,12 @@ export const insertSession = ({
     return promise
 }
 
-export const fetchSession = (localId) => {
+export const fetchSession = () => {
     const promise = new Promise((resolve,reject)=> {
         db.transaction(tx => {
             tx.executeSql(
-            'SELECT * FROM sessionUser2 WHERE localId = ?',
-            [localId],
+            'SELECT * FROM sessionUser2',
+            [],
             (_, result)=> resolve(result),
             (_, error)=> reject(error)
             )
